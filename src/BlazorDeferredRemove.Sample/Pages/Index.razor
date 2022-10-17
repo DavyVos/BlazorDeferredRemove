@@ -1,12 +1,23 @@
 ﻿@page "/"
 
-<RemoveOnCssTransitionEnd CssPropertyName="visibility">
-    <div class="@GetClassName()">
+    <div class="">
         <h1>Hello, world!</h1>
         Welcome to your new app.
         <button @onclick="()=>Done()">Click here to start transition</button>
     </div>
-</RemoveOnCssTransitionEnd>
+
+<RemoveOnCssAnimationEnd>
+    <div class='box @GetClassName()'>
+        <div class="cube">
+            <div class="side  front">1</div> <!-- dice top -->
+            <div class="side   back">6</div> <!-- dice back -->
+            <div class="side  right">5</div> <!-- dice right -->
+            <div class="side   left">2</div> <!-- dice left -->
+            <div class="side    top">4</div> <!-- dice top -->
+            <div class="side bottom">3</div> <!-- dice bottom -->
+        </div>
+    </div>
+</RemoveOnCssAnimationEnd>
 
 @code{
 
@@ -23,4 +34,9 @@
         return StartTransition ? "fadeout" : "";
     }
 
+    protected override void OnInitialized()
+    {
+        StartTransition = true;
+        base.OnInitialized();
+    }
 }
